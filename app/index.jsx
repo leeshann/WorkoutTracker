@@ -29,7 +29,7 @@ export default function App() {
         >
           {cardList.map((muscle, index) => (<Card key={muscle + index} title={muscle}/>))}
         </ScrollView>
-        
+
         <View style={styles.footer}>
           <AddWorkoutButton 
             onPress={() => setModalVisible((prev) => !prev)}
@@ -155,12 +155,10 @@ const styles = StyleSheet.create({
   },
   footer: {
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#FAF9F6',
     width: '100%',
     height: 'fit-content',
     padding: 8,
-    borderTopWidth: '1px',
-    borderTopColor: '#EEEEEE'
   },
   formSectionHeader: {
     color: '#666666'
