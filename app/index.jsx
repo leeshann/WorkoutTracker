@@ -22,11 +22,18 @@ export default function App() {
   return (
       <View style={styles.container}> 
         <Header title="My Workout" date="Friday, Feb 14" isChildPage={false}/>
-        <ScrollView contentContainerStyle={styles.cardContainer} style={styles.cardContainerBackground}>
+
+        <ScrollView 
+          contentContainerStyle={styles.cardContainer} 
+          style={styles.cardContainerBackground}
+        >
           {cardList.map((muscle, index) => (<Card key={muscle + index} title={muscle}/>))}
         </ScrollView>
+        
         <View style={styles.footer}>
-          <AddWorkoutButton onPress={() => setModalVisible((prev) => !prev)}/>
+          <AddWorkoutButton 
+            onPress={() => setModalVisible((prev) => !prev)}
+          />
         </View>
 
         <Modal 
@@ -40,7 +47,10 @@ export default function App() {
               <View style={styles.modalView}>
                 <View style={styles.headerAndXButtonContainer}>
                   <Text style={styles.h1}>Add Workout</Text>
-                  <TouchableOpacity style={styles.xButtonContainer} onPress={() => setModalVisible((prev) => !prev)}>
+                  <TouchableOpacity 
+                    style={styles.xButtonContainer} 
+                    onPress={() => setModalVisible((prev) => !prev)}
+                  >
                     <Text>x</Text>
                   </TouchableOpacity>
                 </View>
@@ -49,7 +59,10 @@ export default function App() {
                   placeholder="Enter workout name"
                   value={inputText}
                   onChangeText={(text) => setInputText(text)}/>
-                <TouchableOpacity style={styles.addButton} onPress={handleAdd}>
+                <TouchableOpacity 
+                  style={styles.addButton} 
+                  onPress={handleAdd}
+                >
                   <Text style={styles.addButtonText}>Add</Text>
                 </TouchableOpacity>
               </View>
