@@ -1,33 +1,35 @@
 import { Text, View, StyleSheet, Modal, Button, TouchableOpacity, Touchable, ScrollView, TextInput } from "react-native";
-// import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react'
 import AddWorkoutButton from './components/addWorkoutButton'
 import Header from './components/Header'
 import Card from './components/Card'
+import { Link, router } from "expo-router";
 
-export default function App() {
+
+export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false)
-  const [dropdownVisible, setDropDownVisible] = useState(false)
   const [cardList, setCardList] = useState(['Chest', 'Back', 'Arms', 'Legs', 'Glutes', 'Shoulders'])
   const [inputText, setInputText] = useState("")
 
-  console.log(inputText)
-
   function handleAdd() {
     // check if array already contains card with the same name, if it does, don't update state. if it doesnt, add it
-    setCardList((prev) => [...prev, inputText])
+    const cardListToLowerCase = cardList.map((item) => item.toLowerCase())
+    if (!cardListToLowerCase.includes(inputText.toLowerCase())) {
+      setCardList((prev) => [...prev, inputText])
+    } 
+    //reset modal state to off && reset input text
     setModalVisible((prev) => !prev)
     setInputText("")
   }
+
   return (
       <View style={styles.container}> 
         <Header title="My Workout" date="Friday, Feb 14" isChildPage={false}/>
-
         <ScrollView 
           contentContainerStyle={styles.cardContainer} 
           style={styles.cardContainerBackground}
         >
-          {cardList.map((muscle, index) => (<Card key={muscle + index} title={muscle}/>))}
+          {cardList.map((muscle, index) => (<Card key={muscle + index} title={muscle} handlePress={() => router.push({pathname: "/Card"})}/>))}
         </ScrollView>
 
         <View style={styles.footer}>

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 export default function Card(props) {
 
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={props.handlePress}>
             <View style={styles.card}>
               <Text style={styles.circle}> </Text>
               <Text style={styles.h2}>{props.title}</Text>
